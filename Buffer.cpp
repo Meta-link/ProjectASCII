@@ -2,6 +2,7 @@
 
 Buffer::Buffer()
 {
+	//Recuperation du handle pour l'output
 	hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
 
 	dwBufferSize = { SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -9,11 +10,6 @@ Buffer::Buffer()
 	rcRegion = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
 
 	buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
-}
-
-HANDLE Buffer::getHandle()
-{
-	return hOutput;
 }
 
 void Buffer::test()
@@ -31,6 +27,7 @@ void Buffer::test()
 
 void Buffer::display()
 {
+	//Affichage du buffer
 	WriteConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,
 		dwBufferCoord, &rcRegion);
 }

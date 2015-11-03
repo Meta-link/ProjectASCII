@@ -11,7 +11,6 @@ public:
 	Buffer();
 	void test();
 	void display();
-	HANDLE getHandle();
 	~Buffer();
 
 private:

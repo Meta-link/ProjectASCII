@@ -13,6 +13,7 @@ public:
 	void display();
 	~Buffer();
 
+private:
 	HANDLE hOutput;
 	COORD dwBufferSize;
 	COORD dwBufferCoord;

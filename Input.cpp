@@ -9,7 +9,7 @@ Input::Input()
 	hStdin = GetStdHandle(STD_INPUT_HANDLE);
 }
 
-void Input::getInput()
+int Input::getInput()
 {
 	DWORD i;
 
@@ -19,10 +19,13 @@ void Input::getInput()
 		{
 			//Traitement des inputs
 			if (irInBuf[i].EventType == KEY_EVENT)
-				cout << "touche pressee" << endl;
+			{
+				return (int)irInBuf[i].Event.KeyEvent.wVirtualScanCode;
+			}
+				
 		}
 	}
-		
+	return 0;
 }
 
 Input::~Input()

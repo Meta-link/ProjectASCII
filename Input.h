@@ -6,7 +6,7 @@ class Input
 {
 public:
 	Input();
-	void getInput();
+	int getInput();
 	~Input();
 
 private:

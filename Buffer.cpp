@@ -10,6 +10,15 @@ Buffer::Buffer()
 	rcRegion = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
 
 	buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
+
+	for (size_t i = 0; i < SCREEN_HEIGHT; i++)
+	{
+		for (size_t j = 0; j < SCREEN_WIDTH; j++)
+		{
+			buffer[i][j].Char.AsciiChar = ' ';
+			buffer[i][j].Attributes = 0x0F;
+		}
+	}
 }
 
 void Buffer::test()
@@ -30,6 +39,26 @@ void Buffer::display()
 	//Affichage du buffer
 	WriteConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,
 		dwBufferCoord, &rcRegion);
+}
+
+void Buffer::edit(vector<Caractere> car)
+{
+	ReadConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,
+		dwBufferCoord, &rcRegion);
+
+	for (size_t i = 0; i < car.size(); i++)
+	{
+		Caractere c = car[i];
+		buffer[c.getY()][c.getX()].Char.AsciiChar = c.getCaractere();
+	}
+}
+
+void Buffer::edit(Caractere c)
+{
+	ReadConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,
+		dwBufferCoord, &rcRegion);
+
+	buffer[c.getY()][c.getX()].Char.AsciiChar = c.getCaractere();
 }
 
 Buffer::~Buffer()

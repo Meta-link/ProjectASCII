@@ -20,4 +20,3 @@ private:
 	SMALL_RECT rcRegion;
 	CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
 };
-

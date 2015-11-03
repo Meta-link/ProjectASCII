@@ -3,6 +3,7 @@
 #include <thread>
 
 #include "Buffer.h"
+#include "Case.h"
 
 #include "NYTimer.cpp"
 

@@ -2,6 +2,7 @@
 
 #include "Buffer.h"
 #include "Case.h"
+#include "Map.h"
 
 #include "NYTimer.cpp"
 

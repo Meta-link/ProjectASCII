@@ -3,6 +3,7 @@
 #include "Buffer.h"
 #include "Input.h"
 #include "Case.h"
+#include "Map.h"
 
 #include "NYTimer.cpp"
 

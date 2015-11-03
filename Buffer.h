@@ -1,7 +1,7 @@
 #pragma once
 #include "windows.h"
 
-// Taille de la console en caractères
+//Taille de la console en caracteres
 #define SCREEN_WIDTH 80
 #define SCREEN_HEIGHT 25
 
@@ -11,6 +11,7 @@ public:
 	Buffer();
 	void test();
 	void display();
+	HANDLE getHandle();
 	~Buffer();
 
 private:

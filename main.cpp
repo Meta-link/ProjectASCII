@@ -1,6 +1,4 @@
 #include <iostream>
-#include <chrono>
-#include <thread>
 
 #include "Buffer.h"
 #include "Case.h"
@@ -12,14 +10,13 @@ using namespace std;
 Buffer buffer;
 NYTimer timer;
 
-
 void init() {
 	
-	//Création du buffer
+	//Creation du buffer
 	buffer = Buffer::Buffer();
 	buffer.test();
 
-	//Création du timer
+	//Creation du timer
 	timer = NYTimer::NYTimer();
 	timer.start();
 }
@@ -36,7 +33,6 @@ int main()
 		{
 			buffer.display();
 		}
-
 	}
 }
 

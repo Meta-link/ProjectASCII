@@ -11,6 +11,11 @@ Buffer::Buffer()
 	buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
 }
 
+HANDLE Buffer::getHandle()
+{
+	return hOutput;
+}
+
 void Buffer::test()
 {
 	ReadConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,

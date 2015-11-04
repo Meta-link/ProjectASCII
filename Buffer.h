@@ -2,6 +2,8 @@
 #include "windows.h"
 #include <vector>
 #include "Caractere.h"
+#include <conio.h>
+#include <strsafe.h>
 
 //Taille de la console en caracteres
 #define SCREEN_WIDTH 80

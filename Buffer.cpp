@@ -1,5 +1,6 @@
 #include "Buffer.h"
 
+
 Buffer::Buffer()
 {
 	//Recuperation du handle pour l'output
@@ -10,8 +11,6 @@ Buffer::Buffer()
 
 	SMALL_RECT rect = SMALL_RECT{ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	SetConsoleWindowInfo(hOutput, true, &rect);
-
-	ShowWindow(GetConsoleWindow(), SW_SHOW);
 
 	dwBufferSize = { SCREEN_WIDTH, SCREEN_HEIGHT };
 	dwBufferCoord = { 0, 0 };
@@ -34,8 +33,10 @@ Buffer::Buffer()
 	cursorInfo.bVisible = false;
 	SetConsoleCursorInfo(hOutput, &cursorInfo);
 
-	
-	
+	//Titre de la fenetre
+	TCHAR title[MAX_PATH];
+	StringCchPrintf(title, MAX_PATH, TEXT("ASCII WARS"));
+	SetConsoleTitle(title);
 }
 
 void Buffer::test()

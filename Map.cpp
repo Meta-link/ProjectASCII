@@ -21,12 +21,12 @@ Map::Map(string filename) {
 
 		// . => fond vert
 		if (currentChar == '.') {
-			cases[col][line] = Case('.', 0x0021, true);
+			cases[col][line] = Case('.', MAP_COLOR_GREEN, true);
 		}
 
 		// X => fond bleu
 		else if (currentChar == 'X') {
-			cases[col][line] = Case('X', 0x0030, false);
+			cases[col][line] = Case('X', MAP_COLOR_BLUE, false);
 		}
 
 		// M => fond rouge

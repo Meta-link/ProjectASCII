@@ -22,7 +22,7 @@ public:
 	void display();
 	void editMap(Map m);
 	void editCar(vector<Caractere*> caracteres);
-	void editHUD(int pm);
+	void editHUD(string joueur, int pm);
 	~Buffer();
 
 private:

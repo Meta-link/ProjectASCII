@@ -84,9 +84,9 @@ void Buffer::editCar(vector<Caractere*> car)
 	}
 }
 
-void Buffer::editHUD(int pm)
+void Buffer::editHUD(string joueur, int pm)
 {
-	string s = "Mouvement restants : "+ to_string(pm);
+	string s = joueur+" : mouvement restants "+ to_string(pm);
 	int i;
 	for (i = 0; i < size(s); i++)
 	{

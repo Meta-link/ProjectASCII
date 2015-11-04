@@ -5,7 +5,7 @@
 
 //Taille de la console en caracteres
 #define SCREEN_WIDTH 80
-#define SCREEN_HEIGHT 25
+#define SCREEN_HEIGHT 40
 
 using namespace std;
 
@@ -15,7 +15,7 @@ public:
 	Buffer();
 	void test();
 	void display();
-	void edit(vector<Caractere> caracteres);
+	void edit(vector<Caractere*> caracteres);
 	void edit(Caractere c);
 	~Buffer();
 

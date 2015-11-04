@@ -14,19 +14,19 @@ using namespace std;
 Buffer buffer;
 NYTimer timer;
 Input input;
-vector<Caractere> car;
+vector<Caractere*> car;
 
 void init() {
 	
 	//Creation du buffer
-	buffer = Buffer::Buffer();
+	buffer = Buffer();
 	buffer.test();
 
 	//Creation du manager d'input
-	input = Input::Input();
+	input = Input();
 
 	//Creation du timer
-	timer = NYTimer::NYTimer();
+	timer = NYTimer();
 	timer.start();
 }
 
@@ -34,8 +34,8 @@ int main()
 {
 	init();
 
-	Caractere bob = Caractere::Caractere('O',5,5);
-	car.push_back(bob);
+	Caractere bob = Caractere('O',5,5);
+	car.push_back(&bob);
 
 	//BOUCLE PRINCIPALE
 	while(!GetAsyncKeyState(VK_ESCAPE)) {
@@ -76,7 +76,8 @@ int main()
 			bob.move(x, y);
 
 			//Rafraichissement de l'affichage
-			buffer.edit(bob);
+			//buffer.edit(bob);
+			buffer.edit(car);
 			buffer.display();
 		}
 

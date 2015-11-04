@@ -26,7 +26,7 @@ Map::Map(string filename) {
 
 		// X => fond bleu
 		else if (currentChar == 'X') {
-			cases[col][line] = Case('X', 0x0030);
+			cases[col][line] = Case('X', 0x0030, true);
 		}
 
 		// Caractère non spécifique => on l'affiche telquel

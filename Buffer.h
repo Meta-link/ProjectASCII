@@ -2,6 +2,7 @@
 #include "windows.h"
 #include <vector>
 #include "Caractere.h"
+#include "Map.h"
 #include <conio.h>
 #include <strsafe.h>
 
@@ -18,6 +19,7 @@ public:
 	void test();
 	void display();
 	void edit(vector<Caractere*> caracteres);
+	void edit(Map m);
 	void edit(Caractere c);
 	~Buffer();
 

@@ -21,21 +21,27 @@ Map::Map(string filename) {
 
 		// . => fond vert
 		if (currentChar == '.') {
-			cases[col][line] = Case('.', 0x0021, true);
+			cases[col][line] = Case('.', MAP_COLOR_GREEN, true);
 		}
 
 		// X => fond bleu
 		else if (currentChar == 'X') {
-			cases[col][line] = Case('X', 0x0030, false);
+			cases[col][line] = Case('X', MAP_COLOR_BLUE, false);
+		}
+
+		// M => fond rouge
+		else if (currentChar == 'M') {
+			cases[col][line] = Case('M', BACKGROUND_RED | BACKGROUND_GREEN, false);
+		}
+
+		else if (currentChar == 'Q') {
+			cases[col][line] = Case('Q', BACKGROUND_RED, true, Case::TYPE_CASE::QG);
 		}
 
 		// Caractère non spécifique => on l'affiche telquel
 		else if (currentChar != '\n') {
 			cases[col][line] = Case(currentChar, 0x0F);
 		}
-
-		// DEBUG
-		//cout << currentChar;
 
 		// A la fin d'un caractère on incrémente la colonne
 		col++;
@@ -52,8 +58,14 @@ Case Map::getCase(int x, int y) {
 	return cases[x][y];
 }
 
+// Retourne vrai si le joueur peut se déplacer sur la case [x,y]
 bool Map::canMove(int x, int y) {
 	return cases[x][y].block;
+}
+
+void Map::triggerCase(int x, int y) {
+	if (cases[x][y].type == Case::TYPE_CASE::QG) {
+	}
 }
 
 Map::~Map()

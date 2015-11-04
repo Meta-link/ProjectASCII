@@ -15,15 +15,15 @@ Buffer buffer;
 NYTimer timer;
 Input input;
 vector<Caractere*> car;
-Map m;
+Map map;
 
 void init() {
 	//Creation de la map
-	m = Map("map.map");
+	map = Map("map.map");
 	
 	//Creation du buffer
 	//buffer = Buffer();
-	buffer.editMap(m);
+	buffer.editMap(map);
 
 	//Creation du manager d'input
 	input = Input();
@@ -37,8 +37,8 @@ int main()
 {
 	init();
 
-	Caractere bob = Caractere('T',5,5,10);
-	Caractere boby = Caractere('T', 10, 10, 5);
+	Caractere bob = Caractere('T',15,15,10);
+	Caractere boby = Caractere('T', 15, 16, 5);
 	car.push_back(&bob);
 	car.push_back(&boby);
 	vector<Caractere*>::iterator it;
@@ -81,16 +81,19 @@ int main()
 				break;
 			}
 
-			if((*it)->move(x, y))
+			if(map.canMove((*it)->getX() + x, (*it)->getY() + y))
 			{
-				if (it == car.end()-1)
-					it = car.begin();
-				else
-					++it;
+				if((*it)->move(x, y))
+				{
+					if (it == car.end()-1)
+						it = car.begin();
+					else
+						++it;
+				}
 			}
 
 			//Rafraichissement de l'affichage
-			buffer.editMap(m);
+			buffer.editMap(map);
 			buffer.editCar(car);
 			buffer.editHUD((*it)->getPm());
 			buffer.display();

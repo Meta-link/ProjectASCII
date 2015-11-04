@@ -72,6 +72,16 @@ void Buffer::edit(vector<Caractere*> car)
 	}
 }
 
+// Affiche la map
+void Buffer::edit(Map m) {
+	for (int i = 0; i < MAP_WIDTH; i++) {
+		for (int j = 0; j < MAP_HEIGHT; j++) {
+			// L'affichage du buffer est inversé X/Y
+			buffer[j][i].Attributes = m.getCase(i, j).getAttribute();
+		}
+	}
+}
+
 //DEPRECIATED
 void Buffer::edit(Caractere c)
 {

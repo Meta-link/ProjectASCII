@@ -24,6 +24,11 @@ Map::Map(string filename) {
 			cases[col][line] = Case('.', 0x0020);
 		}
 
+		// X => fond bleu
+		if (currentChar == 'X') {
+			cases[col][line] = Case('X', 0x0030);
+		}
+
 		// Caractère non spécifique => on l'affiche telquel
 		else if (currentChar != '\n') {
 			cases[col][line] = Case(currentChar, 0x0F);

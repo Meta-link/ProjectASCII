@@ -21,12 +21,12 @@ Map::Map(string filename) {
 
 		// . => fond vert
 		if (currentChar == '.') {
-			cases[col][line] = Case('.', 0x0021);
+			cases[col][line] = Case('.', 0x0021, true);
 		}
 
 		// X => fond bleu
 		else if (currentChar == 'X') {
-			cases[col][line] = Case('X', 0x0030, true);
+			cases[col][line] = Case('X', 0x0030, false);
 		}
 
 		// Caractère non spécifique => on l'affiche telquel

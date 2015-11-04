@@ -4,11 +4,13 @@ Caractere::Caractere()
 {
 }
 
-Caractere::Caractere(char c, int posX, int posY)
+Caractere::Caractere(char c, int posX, int posY, int moves)
 {
 	caractere = c;
 	x = posX;
 	y = posY;
+	pmMax = moves;
+	pm = pmMax;
 }
 
 char Caractere::getCaractere()
@@ -26,10 +28,20 @@ int Caractere::getY()
 	return y;
 }
 
-void Caractere::move(int mX, int mY)
+bool Caractere::move(int mX, int mY)
 {
-	x += mX;
-	y += mY;
+	if(mX != 0 || mY != 0)
+	{
+		x += mX;
+		y += mY;
+		pm -= 1;
+		if(pm <= 0)
+		{
+			pm = pmMax;
+			return true;
+		}
+	}
+	return false;
 }
 
 Caractere::~Caractere()

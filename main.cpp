@@ -33,8 +33,12 @@ int main()
 {
 	init();
 
-	Caractere bob = Caractere('O',5,5);
+	Caractere bob = Caractere('O',5,5,10);
+	Caractere boby = Caractere('X', 10, 10, 5);
 	car.push_back(&bob);
+	car.push_back(&boby);
+	vector<Caractere*>::iterator it;
+	it = car.begin();
 
 	//BOUCLE PRINCIPALE
 	while(!GetAsyncKeyState(VK_ESCAPE)) {
@@ -72,7 +76,14 @@ int main()
 			default:
 				break;
 			}
-			bob.move(x, y);
+
+			if((*it)->move(x, y))
+			{
+				if (it == car.end()-1)
+					it = car.begin();
+				else
+					++it;
+			}
 
 			//Rafraichissement de l'affichage
 			//buffer.edit(bob);

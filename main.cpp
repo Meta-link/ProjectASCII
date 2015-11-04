@@ -20,8 +20,7 @@ void init() {
 	Map m = Map("map.map");
 	
 	//Creation du buffer
-	buffer = Buffer();
-	buffer.test();
+	//buffer = Buffer();
 
 	//Creation du manager d'input
 	input = Input();

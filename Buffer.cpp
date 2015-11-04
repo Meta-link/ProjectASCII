@@ -68,7 +68,7 @@ void Buffer::edit(vector<Caractere*> car)
 	{
 		Caractere c = *car[i];
 		buffer[c.getY()][c.getX()].Char.AsciiChar = c.getCaractere();
-		buffer[c.getY()][c.getX()].Attributes = 0x0031;
+		buffer[c.getY()][c.getX()].Attributes = 0x0051;
 	}
 }
 

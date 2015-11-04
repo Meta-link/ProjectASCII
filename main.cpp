@@ -15,9 +15,11 @@ Buffer buffer;
 NYTimer timer;
 Input input;
 vector<Caractere*> car;
+Map m;
 
 void init() {
-	Map m = Map("map.map");
+	//Creation de la map
+	m = Map("map.map");
 	
 	//Creation du buffer
 	//buffer = Buffer();
@@ -35,8 +37,8 @@ int main()
 {
 	init();
 
-	Caractere bob = Caractere('O',5,5,10);
-	Caractere boby = Caractere('X', 10, 10, 5);
+	Caractere bob = Caractere('T',5,5,10);
+	Caractere boby = Caractere('T', 10, 10, 5);
 	car.push_back(&bob);
 	car.push_back(&boby);
 	vector<Caractere*>::iterator it;
@@ -88,7 +90,7 @@ int main()
 			}
 
 			//Rafraichissement de l'affichage
-			//buffer.edit(bob);
+			buffer.edit(m);
 			buffer.edit(car);
 			buffer.display();
 		}

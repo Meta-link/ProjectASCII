@@ -78,6 +78,7 @@ void Buffer::edit(Map m) {
 	for (int i = 0; i < MAP_WIDTH; i++) {
 		for (int j = 0; j < MAP_HEIGHT; j++) {
 			// L'affichage du buffer est inversé X/Y
+			buffer[j][i].Char.AsciiChar = ' ';
 			buffer[j][i].Attributes = m.getCase(i, j).getAttribute();
 		}
 	}

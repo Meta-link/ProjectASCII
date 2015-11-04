@@ -52,6 +52,10 @@ Case Map::getCase(int x, int y) {
 	return cases[x][y];
 }
 
+bool Map::canMove(int x, int y) {
+	return cases[x][y].block;
+}
+
 Map::~Map()
 {
 }

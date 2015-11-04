@@ -29,6 +29,9 @@ Map::Map(string filename) {
 			cases[col][line] = Case(currentChar, 0x0F);
 		}
 
+		// DEBUG
+		//cout << currentChar;
+
 		// A la fin d'un caractère on incrémente la colonne
 		col++;
 		// Si on arrive en fin de ligne, on incrémente la ligne et on remet la colonne à 0
@@ -39,6 +42,7 @@ Map::Map(string filename) {
 	}
 }
 
+// Retourne la case indiquée en [X,Y]
 Case Map::getCase(int x, int y) {
 	return cases[x][y];
 }

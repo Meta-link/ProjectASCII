@@ -22,6 +22,7 @@ public:
 	~Map();
 	Case getCase(int x, int y);
 	bool canMove(int x, int y);
+	void triggerCase(int x, int y);
 
 private:
 	Case cases[MAP_WIDTH][MAP_HEIGHT];

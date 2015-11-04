@@ -1,11 +1,12 @@
 #include "Case.h"
 
 // Construit une case
-Case::Case(char caractere, int attributs, bool caseBloquante)
+Case::Case(char caractere, int attributs, bool caseBloquante, TYPE_CASE t)
 {
 	valeur.Char.UnicodeChar = caractere;
 	valeur.Attributes = attributs;
 	block = caseBloquante;
+	type = t;
 }
 
 // Change la valeur d'une case

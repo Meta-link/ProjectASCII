@@ -29,6 +29,11 @@ Map::Map(string filename) {
 			cases[col][line] = Case('X', 0x0030, false);
 		}
 
+		// M => fond rouge
+		else if (currentChar == 'M') {
+			cases[col][line] = Case('M', BACKGROUND_RED | BACKGROUND_GREEN, false);
+		}
+
 		// Caractère non spécifique => on l'affiche telquel
 		else if (currentChar != '\n') {
 			cases[col][line] = Case(currentChar, 0x0F);
@@ -52,6 +57,7 @@ Case Map::getCase(int x, int y) {
 	return cases[x][y];
 }
 
+// Retourne vrai si le joueur peut se déplacer sur la case [x,y]
 bool Map::canMove(int x, int y) {
 	return cases[x][y].block;
 }

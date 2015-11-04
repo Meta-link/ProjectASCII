@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Buffer">
+    <Position X="9.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAQAAAQAAAAAAAAAAAAEQAAAIAIBAAAkQQAA=</HashCode>
+      <FileName>Buffer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Caractere">
+    <Position X="4.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAACABAAAEAAACAAAAAAAAAhgAGAIAAA=</HashCode>
+      <FileName>Caractere.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Case">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAgAAAAAAgAACAAAAAoAAAAABAA=</HashCode>
+      <FileName>Case.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Input">
+    <Position X="2.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACEBAAAAAAgAAAAAAAAAEAAAgAAAAAAAAAAAABA=</HashCode>
+      <FileName>Input.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Map">
+    <Position X="6.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAgAAAAAASAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Map.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

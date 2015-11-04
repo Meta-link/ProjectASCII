@@ -143,9 +143,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Caractere.cpp" />
     <ClCompile Include="Case.cpp" />
@@ -160,6 +157,9 @@
     <ClInclude Include="Case.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Map.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

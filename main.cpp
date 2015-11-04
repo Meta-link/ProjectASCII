@@ -21,6 +21,7 @@ void init() {
 	
 	//Creation du buffer
 	//buffer = Buffer();
+	buffer.edit(m);
 
 	//Creation du manager d'input
 	input = Input();

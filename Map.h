@@ -7,7 +7,7 @@
 using namespace std;
 
 #define MAP_WIDTH 80
-#define MAP_HEIGHT 25
+#define MAP_HEIGHT 40
 
 class Map
 {

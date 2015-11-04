@@ -17,6 +17,7 @@ Input input;
 vector<Caractere*> car;
 
 void init() {
+	Map m = Map("map.map");
 	
 	//Creation du buffer
 	buffer = Buffer();

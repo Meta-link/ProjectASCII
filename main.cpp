@@ -23,7 +23,7 @@ void init() {
 	
 	//Creation du buffer
 	//buffer = Buffer();
-	buffer.edit(m);
+	buffer.editMap(m);
 
 	//Creation du manager d'input
 	input = Input();
@@ -90,8 +90,9 @@ int main()
 			}
 
 			//Rafraichissement de l'affichage
-			buffer.edit(m);
-			buffer.edit(car);
+			buffer.editMap(m);
+			buffer.editCar(car);
+			buffer.editHUD((*it)->getPm());
 			buffer.display();
 		}
 

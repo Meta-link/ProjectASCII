@@ -28,6 +28,11 @@ int Caractere::getY()
 	return y;
 }
 
+int Caractere::getPm()
+{
+	return pm;
+}
+
 bool Caractere::move(int mX, int mY)
 {
 	if(mX != 0 || mY != 0)

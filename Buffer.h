@@ -20,9 +20,9 @@ public:
 	Buffer();
 	void test();
 	void display();
-	void edit(vector<Caractere*> caracteres);
-	void edit(Map m);
-	void edit(Caractere c);
+	void editMap(Map m);
+	void editCar(vector<Caractere*> caracteres);
+	void editHUD(int pm);
 	~Buffer();
 
 private:

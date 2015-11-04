@@ -61,14 +61,14 @@ void Buffer::display()
 
 void Buffer::edit(vector<Caractere*> car)
 {
-	ReadConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,
-		dwBufferCoord, &rcRegion);
+	//ReadConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,
+	//	dwBufferCoord, &rcRegion);
 
 	for (size_t i = 0; i < car.size(); i++)
 	{
 		Caractere c = *car[i];
 		buffer[c.getY()][c.getX()].Char.AsciiChar = c.getCaractere();
-		buffer[c.getY()][c.getX()].Attributes = 0x0012;
+		buffer[c.getY()][c.getX()].Attributes = buffer[c.getY()][c.getX()].Attributes | 0x0002; // Très expérimental - ça "fonctionne" par magie
 	}
 }
 

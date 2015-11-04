@@ -9,6 +9,7 @@ public:
 	char getCaractere();
 	int getX();
 	int getY();
+	int getPm();
 	bool move(int x, int y);
 	~Caractere();
 

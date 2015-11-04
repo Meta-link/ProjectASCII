@@ -59,7 +59,18 @@ void Buffer::display()
 		dwBufferCoord, &rcRegion);
 }
 
-void Buffer::edit(vector<Caractere*> car)
+// Affiche la map
+void Buffer::editMap(Map m) {
+	for (int i = 0; i < MAP_WIDTH; i++) {
+		for (int j = 0; j < MAP_HEIGHT; j++) {
+			// L'affichage du buffer est inversé X/Y
+			buffer[j][i].Char.AsciiChar = ' ';
+			buffer[j][i].Attributes = m.getCase(i, j).getAttribute();
+		}
+	}
+}
+
+void Buffer::editCar(vector<Caractere*> car)
 {
 	//ReadConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,
 	//	dwBufferCoord, &rcRegion);
@@ -73,24 +84,19 @@ void Buffer::edit(vector<Caractere*> car)
 	}
 }
 
-// Affiche la map
-void Buffer::edit(Map m) {
-	for (int i = 0; i < MAP_WIDTH; i++) {
-		for (int j = 0; j < MAP_HEIGHT; j++) {
-			// L'affichage du buffer est inversé X/Y
-			buffer[j][i].Char.AsciiChar = ' ';
-			buffer[j][i].Attributes = m.getCase(i, j).getAttribute();
-		}
-	}
-}
-
-//DEPRECIATED
-void Buffer::edit(Caractere c)
+void Buffer::editHUD(int pm)
 {
-	ReadConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,
-		dwBufferCoord, &rcRegion);
-
-	buffer[c.getY()][c.getX()].Char.AsciiChar = c.getCaractere();
+	string s = "Mouvement restants : "+ to_string(pm);
+	int i;
+	for (i = 0; i < size(s); i++)
+	{
+		buffer[0][i].Char.AsciiChar = s[i];
+		buffer[0][i].Attributes = 0x000F;
+	}
+	for (i; i < SCREEN_WIDTH; i++)
+	{
+		buffer[0][i].Attributes = 0x000F;
+	}
 }
 
 Buffer::~Buffer()

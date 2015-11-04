@@ -19,8 +19,7 @@ vector<Caractere*> car;
 void init() {
 	
 	//Creation du buffer
-	buffer = Buffer();
-	buffer.test();
+	//buffer = Buffer();
 
 	//Creation du manager d'input
 	input = Input();

@@ -39,19 +39,6 @@ Buffer::Buffer()
 	SetConsoleTitle(title);
 }
 
-void Buffer::test()
-{
-	ReadConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,
-		dwBufferCoord, &rcRegion);
-
-	buffer[5][10].Char.AsciiChar = 'H';
-	buffer[5][10].Attributes = 0x0E;
-	buffer[5][11].Char.AsciiChar = 'i';
-	buffer[5][11].Attributes = 0x0B;
-	buffer[5][12].Char.AsciiChar = '!';
-	buffer[5][12].Attributes = 0x0A;
-}
-
 void Buffer::display()
 {
 	//Affichage du buffer
@@ -70,6 +57,7 @@ void Buffer::editMap(Map m) {
 	}
 }
 
+// Gère l'affichage des joueurs et de leurs QG
 void Buffer::editCar(Player p)
 {
 	for (size_t i = 0; i < p.getCar().size(); i++)
@@ -77,7 +65,6 @@ void Buffer::editCar(Player p)
 		Caractere c = *p.getCar()[i];
 		buffer[c.getY()][c.getX()].Char.AsciiChar = c.getCaractere();
 
-		// TODO: récupérer la couleur du player
 		int playerOneColor = p.getColor(); // Bleu
 
 		// Récupération du background de la case sous laquelle le joueur va
@@ -89,28 +76,37 @@ void Buffer::editCar(Player p)
 		// Mettre à jour la couleur de la case
 		buffer[c.getY()][c.getX()].Attributes = nouvelleCouleur;
 
+		// Affichage du QG des personnages
 		buffer[p.getQg().getY()][p.getQg().getX()].Attributes = nouvelleCouleur;
 		buffer[p.getQg().getY()][p.getQg().getX()].Char.AsciiChar = p.getQg().getCaractere();
 	}
 }
 
+// Gère l'affiche de l'interface
 void Buffer::editHUD(string joueur, int pm)
 {
 	string s = joueur+" : mouvement restants "+ to_string(pm);
 	int i;
+
+	// Fond noir texte blanc + affichage du texte
 	for (i = 0; i < size(s); i++)
 	{
 		buffer[0][i].Char.AsciiChar = s[i];
 		buffer[0][i].Attributes = 0x000F;
 	}
+
+	// Affichage de la ligne jusqu'au bout de l'écran
 	for (i; i < SCREEN_WIDTH; i++)
 	{
 		buffer[0][i].Attributes = 0x000F;
 	}
 }
 
+// Permet d'afficher un écran de victoire quand un joueur atteint le QG de l'autre
+// Fonction très sale: à enlever
 void Buffer::yolo()
 {
+	#pragma region
 	for (size_t i = 0; i < SCREEN_HEIGHT; i++)
 	{
 		for (size_t j = 0; j < SCREEN_WIDTH; j++)
@@ -158,6 +154,7 @@ void Buffer::yolo()
 	}
 
 	display();
+	#pragma endregion  Code tres sale
 }
 
 Buffer::~Buffer()

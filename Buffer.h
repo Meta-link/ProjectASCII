@@ -17,7 +17,6 @@ class Buffer
 {
 public:
 	Buffer();
-	void test();
 	void display();
 	void editMap(Map m);
 	void editCar(Player p);

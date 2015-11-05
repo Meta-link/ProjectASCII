@@ -72,15 +72,22 @@ void Buffer::editMap(Map m) {
 
 void Buffer::editCar(vector<Caractere*> car)
 {
-	//ReadConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,
-	//	dwBufferCoord, &rcRegion);
-
 	for (size_t i = 0; i < car.size(); i++)
 	{
 		Caractere c = *car[i];
 		buffer[c.getY()][c.getX()].Char.AsciiChar = c.getCaractere();
-		// case &= NON(foreground) revient à conserver la couleur du background SEULEMENT
-		buffer[c.getY()][c.getX()].Attributes &= ~ FOREGROUND;
+
+		// TODO: récupérer la couleur du player
+		int playerOneColor = 0x0001; // Bleu
+
+		// Récupération du background de la case sous laquelle le joueur va
+		int backgroundActuel = buffer[c.getY()][c.getX()].Attributes;
+		// Extrait cette couleur (c'est le dernier bit à droite donc un "NON ET" permet de récupérer le bit)
+		backgroundActuel &= ~0x000f;
+		// Combine les deux couleurs ensemble (ex: 0x0001 | 0x0010 = 0x0011)
+		int nouvelleCouleur = playerOneColor | backgroundActuel;
+		// Mettre à jour la couleur de la case
+		buffer[c.getY()][c.getX()].Attributes = nouvelleCouleur;
 	}
 }
 

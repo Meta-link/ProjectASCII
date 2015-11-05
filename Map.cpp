@@ -63,8 +63,18 @@ bool Map::canMove(int x, int y) {
 	return cases[x][y].block;
 }
 
+// Code appelé à chaque fois qu'un joueur se déplace sur une case
 void Map::triggerCase(int x, int y) {
-	if (cases[x][y].type == Case::TYPE_CASE::QG) {
+	switch (cases[x][y].type)
+	{
+		case Case::TYPE_CASE::QG :
+			break;
+		case Case::TYPE_CASE::BONUS:
+			break;
+		case Case::TYPE_CASE::TERRAIN:
+			break;
+		default:
+			break;
 	}
 }
 

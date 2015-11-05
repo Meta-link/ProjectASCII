@@ -5,7 +5,7 @@ class Caractere
 {
 public:
 	Caractere();
-	Caractere(char c, int x, int y, int pm);
+	Caractere(char _caractere, int _x, int _y, int _pm);
 	char getCaractere();
 	int getX();
 	int getY();

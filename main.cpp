@@ -46,8 +46,8 @@ int main()
 	Caractere bobette = Caractere('I', 20, 20, 5);
 
 	j1.addUnit(&bob);
-	j2.addUnit(&boby);
 	j1.addUnit(&bobette);
+	j2.addUnit(&boby);
 
 	j1.start();
 	j2.start();
@@ -66,7 +66,7 @@ int main()
 		int x = 0;
 		int y = 0;
 
-		//Refresh de l'écran toutes les secondes
+		//Refresh de l'écran toutes les 300 millisecondes
 		if(timer.getElapsedMs(300) != 0)
 		{
 			//Recuperation et traitement des inputs
@@ -117,10 +117,11 @@ int main()
 					}
 				}
 
-				if (map.canMove(destX, destY))
+				if (map.canMove(destX, destY)) //On verifie qu'on peut aller sur la case (collisions avec le decor)
 				{
-					if (players[indice]->moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
+					if(players[indice]->moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
 					{
+						players[indice]->nextUnit(); //On passe à l'unite et au joueur suivant
 						indice = (indice + 1) % 2;
 					}
 				}

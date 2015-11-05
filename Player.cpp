@@ -1,6 +1,11 @@
 #include "Player.h"
 
 
+Player::Player()
+{
+
+}
+
 Player::Player(string _name)
 {
 	name = _name;
@@ -23,7 +28,7 @@ bool Player::moveUnit(int x, int y)
 
 void Player::nextUnit()
 {
-	if(it == units.end()-1) //Si c'est le dernier Caractere d'un joueur on passe au suivant
+	if((it != units.end()) && (it+1 == units.end())) //Si c'est le dernier Caractere d'un joueur on passe au suivant
 	{
 		it = units.begin();
 	}

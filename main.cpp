@@ -49,7 +49,13 @@ int main()
 
 	j1.start();
 	j2.start();
-	Player &currentPlayer = j1;
+	Player* currentPlayer = &j1;
+
+	Player* players = new Player[2];
+	players[0] = j1; 
+	players[1] = j2;
+	int indice = 0;
+
 	bool turn = true;
 
 
@@ -90,22 +96,32 @@ int main()
 				break;
 			}
 
-			if(map.canMove(currentPlayer.getUnitX() + x, currentPlayer.getUnitY() + y))
+			/*if(map.canMove(currentPlayer->getUnitX() + x, currentPlayer->getUnitY() + y))
 			{
-				if(currentPlayer.moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
+				if(currentPlayer->moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
 				{
-					currentPlayer.nextUnit();
+					currentPlayer->nextUnit();
 
 					//Passage au joueur suivant
 					turn = !turn;
 					if (turn)
 					{
-						currentPlayer = j1;
+						*currentPlayer = j1;
 					}
 					else
 					{
-						currentPlayer = j2;
+						*currentPlayer = j2;
 					}
+				}
+			}*/
+
+			if (map.canMove(players[indice].getUnitX() + x, players[indice].getUnitY() + y))
+			{
+				if (players[indice].moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
+				{
+					//players[indice].nextUnit();
+
+					indice = (indice + 1) % 2;
 				}
 			}
 
@@ -113,7 +129,7 @@ int main()
 			buffer.editMap(map);
 			buffer.editCar(j1.getCar());
 			buffer.editCar(j2.getCar());
-			buffer.editHUD(currentPlayer.getName(), currentPlayer.getPm());
+			buffer.editHUD(players[indice].getName(), players[indice].getPm());
 			buffer.display();
 		}
 

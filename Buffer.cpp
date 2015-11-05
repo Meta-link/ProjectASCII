@@ -9,7 +9,7 @@ Buffer::Buffer()
 	COORD size = COORD{ SCREEN_WIDTH | SCREEN_HEIGHT };
 	SetConsoleScreenBufferSize(hOutput, size);
 
-	SMALL_RECT rect = SMALL_RECT{ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+	SMALL_RECT rect = SMALL_RECT{ 0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1 };
 	SetConsoleWindowInfo(hOutput, true, &rect);
 
 	dwBufferSize = { SCREEN_WIDTH, SCREEN_HEIGHT };

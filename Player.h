@@ -7,6 +7,7 @@ using namespace std;
 class Player
 {
 public:
+	Player();
 	Player(string _name);
 	void start();
 	void addUnit(Caractere* c);

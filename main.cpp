@@ -41,22 +41,21 @@ int main()
 	Player j1("Joueur 1", FOREGROUND_BLUE);
 	Player j2("Jean-Luc", FOREGROUND_RED);
 
-	Caractere bob = Caractere('T',15,15,10);
+	Caractere bob = Caractere('T',15,15,5);
 	Caractere boby = Caractere('T', 15, 16, 5);
+	Caractere bobette = Caractere('I', 20, 20, 5);
 
 	j1.addUnit(&bob);
 	j2.addUnit(&boby);
+	j1.addUnit(&bobette);
 
 	j1.start();
 	j2.start();
-	Player* currentPlayer = &j1;
 
-	Player* players = new Player[2];
-	players[0] = j1; 
-	players[1] = j2;
+	Player** players = new Player*[2];
+	players[0] = &j1; 
+	players[1] = &j2;
 	int indice = 0;
-
-	bool turn = true;
 
 
 	//BOUCLE PRINCIPALE
@@ -66,7 +65,7 @@ int main()
 		int y = 0;
 
 		//Refresh de l'écran toutes les secondes
-		if(timer.getElapsedMs(300))
+		if(timer.getElapsedMs(300) != 0)
 		{
 			//Recuperation et traitement des inputs
 			switch(input.getInput())
@@ -96,33 +95,14 @@ int main()
 				break;
 			}
 
-			/*if(map.canMove(currentPlayer->getUnitX() + x, currentPlayer->getUnitY() + y))
-			{
-				if(currentPlayer->moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
-				{
-					currentPlayer->nextUnit();
-
-					//Passage au joueur suivant
-					turn = !turn;
-					if (turn)
-					{
-						*currentPlayer = j1;
-					}
-					else
-					{
-						*currentPlayer = j2;
-					}
-				}
-			}*/
-
 			if(x != 0 || y != 0)
 			{
-				if (map.canMove(players[indice].getUnitX() + x, players[indice].getUnitY() + y))
+				if (map.canMove(players[indice]->getUnitX() + x, players[indice]->getUnitY() + y))
 				{
-					if (players[indice].moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
+					if (players[indice]->moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
 					{
-						//players[indice].nextUnit();
-
+						players[indice]->nextUnit();
+						players[indice]->getName();
 						indice = (indice + 1) % 2;
 					}
 				}
@@ -132,7 +112,7 @@ int main()
 			buffer.editMap(map);
 			buffer.editCar(j1);
 			buffer.editCar(j2);
-			buffer.editHUD(players[indice].getName(), players[indice].getPm());
+			buffer.editHUD(players[indice]->getName(), players[indice]->getPm());
 			buffer.display();
 		}
 

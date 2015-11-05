@@ -3,7 +3,6 @@
 
 Player::Player()
 {
-
 }
 
 Player::Player(string _name, WORD _color)
@@ -29,13 +28,23 @@ bool Player::moveUnit(int x, int y)
 
 void Player::nextUnit()
 {
+	//++it;
+	////it = units.begin();
+	//vector<Caractere*>::iterator tmp = units.end()-1;
+	//int a = 0;
+	////if ((it == units.end()-1))// && (it + 1 == units.end()))
+	///*if (it != tmp)
+	//	cout << "mdr" << endl;*/
+	////if (it != units.end()-1)
+	//	cout << "1" << endl;
+	
 	if((it != units.end()) && (it+1 == units.end())) //Si c'est le dernier Caractere d'un joueur on passe au suivant
 	{
 		it = units.begin();
 	}
 	else
 	{
-		++it;
+		it++;
 	}
 }
 

@@ -38,8 +38,8 @@ int main()
 	//INITIALISATIONS
 	init();
 
-	Player j1("Joueur 1");
-	Player j2("Jean-Luc");
+	Player j1("Joueur 1", FOREGROUND_BLUE);
+	Player j2("Jean-Luc", FOREGROUND_RED);
 
 	Caractere bob = Caractere('T',15,15,10);
 	Caractere boby = Caractere('T', 15, 16, 5);
@@ -127,8 +127,8 @@ int main()
 
 			//Rafraichissement de l'affichage
 			buffer.editMap(map);
-			buffer.editCar(j1.getCar());
-			buffer.editCar(j2.getCar());
+			buffer.editCar(j1);
+			buffer.editCar(j2);
 			buffer.editHUD(players[indice].getName(), players[indice].getPm());
 			buffer.display();
 		}

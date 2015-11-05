@@ -5,6 +5,7 @@
 #include "Map.h"
 #include <conio.h>
 #include <strsafe.h>
+#include "Player.h"
 
 //Taille de la console en caracteres
 #define SCREEN_WIDTH 80
@@ -21,7 +22,7 @@ public:
 	void test();
 	void display();
 	void editMap(Map m);
-	void editCar(vector<Caractere*> caracteres);
+	void editCar(Player p);
 	void editHUD(string joueur, int pm);
 	~Buffer();
 

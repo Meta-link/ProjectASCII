@@ -70,15 +70,15 @@ void Buffer::editMap(Map m) {
 	}
 }
 
-void Buffer::editCar(vector<Caractere*> car)
+void Buffer::editCar(Player p)
 {
-	for (size_t i = 0; i < car.size(); i++)
+	for (size_t i = 0; i < p.getCar().size(); i++)
 	{
-		Caractere c = *car[i];
+		Caractere c = *p.getCar()[i];
 		buffer[c.getY()][c.getX()].Char.AsciiChar = c.getCaractere();
 
 		// TODO: récupérer la couleur du player
-		int playerOneColor = 0x0001; // Bleu
+		int playerOneColor = p.getColor(); // Bleu
 
 		// Récupération du background de la case sous laquelle le joueur va
 		int backgroundActuel = buffer[c.getY()][c.getX()].Attributes;

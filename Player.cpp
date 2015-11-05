@@ -6,9 +6,10 @@ Player::Player()
 
 }
 
-Player::Player(string _name)
+Player::Player(string _name, WORD _color)
 {
 	name = _name;
+	color = _color;
 }
 
 void Player::start()
@@ -46,6 +47,11 @@ int Player::getPm()
 string Player::getName()
 {
 	return name;
+}
+
+WORD Player::getColor()
+{
+	return color;
 }
 
 vector<Caractere*> Player::getCar()

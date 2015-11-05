@@ -6,6 +6,7 @@
 #include "Case.h"
 #include "Map.h"
 #include "Caractere.h"
+#include "Player.h"
 
 #include "NYTimer.cpp"
 
@@ -14,7 +15,6 @@ using namespace std;
 Buffer buffer;
 NYTimer timer;
 Input input;
-vector<Caractere*> car;
 Map map;
 
 void init() {
@@ -35,14 +35,23 @@ void init() {
 
 int main()
 {
+	//INITIALISATIONS
 	init();
+
+	Player j1("Joueur 1");
+	Player j2("Jean-Luc");
 
 	Caractere bob = Caractere('T',15,15,10);
 	Caractere boby = Caractere('T', 15, 16, 5);
-	car.push_back(&bob);
-	car.push_back(&boby);
-	vector<Caractere*>::iterator it;
-	it = car.begin();
+
+	j1.addUnit(&bob);
+	j2.addUnit(&boby);
+
+	j1.start();
+	j2.start();
+	Player &currentPlayer = j1;
+	bool turn = true;
+
 
 	//BOUCLE PRINCIPALE
 	while(!GetAsyncKeyState(VK_ESCAPE)) {
@@ -81,21 +90,30 @@ int main()
 				break;
 			}
 
-			if(map.canMove((*it)->getX() + x, (*it)->getY() + y))
+			if(map.canMove(currentPlayer.getUnitX() + x, currentPlayer.getUnitY() + y))
 			{
-				if((*it)->move(x, y))
+				if(currentPlayer.moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
 				{
-					if (it == car.end()-1)
-						it = car.begin();
+					currentPlayer.nextUnit();
+
+					//Passage au joueur suivant
+					turn = !turn;
+					if (turn)
+					{
+						currentPlayer = j1;
+					}
 					else
-						++it;
+					{
+						currentPlayer = j2;
+					}
 				}
 			}
 
 			//Rafraichissement de l'affichage
 			buffer.editMap(map);
-			buffer.editCar(car);
-			buffer.editHUD((*it)->getPm());
+			buffer.editCar(j1.getCar());
+			buffer.editCar(j2.getCar());
+			buffer.editHUD(currentPlayer.getName(), currentPlayer.getPm());
 			buffer.display();
 		}
 

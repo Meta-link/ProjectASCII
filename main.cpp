@@ -38,11 +38,11 @@ int main()
 	//INITIALISATIONS
 	init();
 
-	Player j1("Joueur 1", FOREGROUND_BLUE);
-	Player j2("Jean-Luc", FOREGROUND_RED);
+	Player j1("Jean-Ascii", FOREGROUND_BLUE, 11, 5);
+	Player j2("Jean-Luc", FOREGROUND_RED, 60, 32);
 
-	Caractere bob = Caractere('T',15,15,10);
-	Caractere boby = Caractere('T', 15, 16, 5);
+	Caractere bob = Caractere('T', 15, 5, 10);
+	Caractere boby = Caractere('T', 14, 5, 10);
 
 	j1.addUnit(&bob);
 	j2.addUnit(&boby);
@@ -51,16 +51,18 @@ int main()
 	j2.start();
 	Player* currentPlayer = &j1;
 
-	Player* players = new Player[2];
+	int playerCount = 2;
+	Player* players = new Player[playerCount];
 	players[0] = j1; 
 	players[1] = j2;
 	int indice = 0;
 
 	bool turn = true;
+	bool yolo = false;
 
 
 	//BOUCLE PRINCIPALE
-	while(!GetAsyncKeyState(VK_ESCAPE)) {
+	while(!GetAsyncKeyState(VK_ESCAPE) || yolo) {
 
 		int x = 0;
 		int y = 0;
@@ -96,33 +98,30 @@ int main()
 				break;
 			}
 
-			/*if(map.canMove(currentPlayer->getUnitX() + x, currentPlayer->getUnitY() + y))
-			{
-				if(currentPlayer->moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
-				{
-					currentPlayer->nextUnit();
-
-					//Passage au joueur suivant
-					turn = !turn;
-					if (turn)
-					{
-						*currentPlayer = j1;
-					}
-					else
-					{
-						*currentPlayer = j2;
-					}
-				}
-			}*/
-
 			if(x != 0 || y != 0)
 			{
-				if (map.canMove(players[indice].getUnitX() + x, players[indice].getUnitY() + y))
+				// Récupération de la destination du joueur (avant de se déplacer)
+				int destX = players[indice].getUnitX() + x, destY = players[indice].getUnitY() + y;
+				// Pour chaque joueur on vérifie si on n'est pas sur son QG (à changer, pas très propre)
+				for (int i = 0; i < playerCount; i++) {
+					// Sauf pour le joueur en train de jouer
+					if (i != indice) {
+						int qgX = players[i].getQg().getX();
+						int qgY = players[i].getQg().getY();
+
+						// Si on est sur le QG d'un autre
+						if (destX == qgX && destY == qgY) {
+							int a = 0;
+							// TODO: Faire quelque chose
+							yolo = true;
+						}
+					}
+				}
+
+				if (map.canMove(destX, destY))
 				{
 					if (players[indice].moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
 					{
-						//players[indice].nextUnit();
-
 						indice = (indice + 1) % 2;
 					}
 				}
@@ -134,6 +133,9 @@ int main()
 			buffer.editCar(j2);
 			buffer.editHUD(players[indice].getName(), players[indice].getPm());
 			buffer.display();
+
+			if (yolo) buffer.yolo();
+
 		}
 
 		

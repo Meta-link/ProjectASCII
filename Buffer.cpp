@@ -6,7 +6,7 @@ Buffer::Buffer()
 	//Recuperation du handle pour l'output
 	hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
 
-	COORD size = COORD{ SCREEN_WIDTH | SCREEN_HEIGHT };
+	COORD size = COORD{ SCREEN_WIDTH|SCREEN_HEIGHT };
 	SetConsoleScreenBufferSize(hOutput, size);
 
 	SMALL_RECT rect = SMALL_RECT{ 0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1 };
@@ -84,10 +84,13 @@ void Buffer::editCar(Player p)
 		int backgroundActuel = buffer[c.getY()][c.getX()].Attributes;
 		// Extrait cette couleur (c'est le dernier bit à droite donc un "NON ET" permet de récupérer le bit)
 		backgroundActuel &= ~0x000f;
-		// Combine les deux couleurs ensemble (ex: 0x0001 | 0x0010 = 0x0011)
-		int nouvelleCouleur = playerOneColor | backgroundActuel;
+		// Combine les deux couleurs ensemble (ex: 0x0001|0x0010 = 0x0011)
+		int nouvelleCouleur = playerOneColor|backgroundActuel;
 		// Mettre à jour la couleur de la case
 		buffer[c.getY()][c.getX()].Attributes = nouvelleCouleur;
+
+		buffer[p.getQg().getY()][p.getQg().getX()].Attributes = nouvelleCouleur;
+		buffer[p.getQg().getY()][p.getQg().getX()].Char.AsciiChar = p.getQg().getCaractere();
 	}
 }
 
@@ -104,6 +107,57 @@ void Buffer::editHUD(string joueur, int pm)
 	{
 		buffer[0][i].Attributes = 0x000F;
 	}
+}
+
+void Buffer::yolo()
+{
+	for (size_t i = 0; i < SCREEN_HEIGHT; i++)
+	{
+		for (size_t j = 0; j < SCREEN_WIDTH; j++)
+		{
+			buffer[i][j].Char.AsciiChar = ' ';
+			buffer[i][j].Attributes = 0x0F;
+		}
+	}
+
+	char ligne1[65] = { '_','_','_','_','_','_',' ','_',' ',' ',' ',' ',' ',' ',' ','_','_','_','_','_',' ',' ',' ','_','_','_','_','_','_','_','_','_','_','_','_','_',' ',' ',' ','_','_',' ',' ',' ',' ','_',' ',' ',' ',' ','_',' ',' ','_','_','_','_','_',' ','_',' ',' ',' ','_' };
+	char ligne2[65] = { '|',' ','_','_','_',' ','\\',' ','|',' ',' ',' ',' ',' ',' / ',' ','_',' ','\\',' ','\\',' ',' / ',' ',' / ',' ',' ','_','_','_','|',' ','_','_','_',' ','\\',' ',' / ',' ',' ','|',' ',' ','|',' ','|',' ',' ','|',' ','|','|',' ',' ','_',' ',' ','|',' ','\\',' ','|',' ','|' };
+	char ligne3[65] = { '|',' ','|','_','/',' ','/',' ','|',' ',' ',' ',' ','/',' ','/','_','\\',' ','\\',' ','V',' ',' / ','|',' ','|','_','_',' ','|',' ','|','_',' / ',' ',' / ',' ','`','|',' ','|',' ',' ','|',' ','|',' ',' ','|',' ','|','|',' ','|',' ','|',' ','|',' ',' ','\\','|',' ','|' };
+	char ligne4[65] = { '|',' ',' ','_','_','/','|',' ','|',' ',' ',' ',' ','|',' ',' ','_',' ',' ','|','\\',' ','/',' ','|',' ',' ','_','_','|','|',' ',' ',' ',' ','/',' ',' ',' ','|',' ','|',' ',' ','|',' ','|','/','\\','|',' ','|','|',' ','|',' ','|',' ','|',' ','.',' ','`',' ','|' };
+	char ligne5[65] = { '|',' ','|',' ',' ',' ','|',' ','|','_','_','_','_','|',' ','|',' ','|',' ','|','|',' ','|',' ','|',' ','|','_','_','_','|',' ','|','\\',' ','\\',' ',' ','_','|',' ','|','_',' ','\\',' ',' ','/','\\',' ',' ','/','\\',' ','\\','_','/',' ','/',' ','|','\\',' ',' ','|' };
+	char ligne6[65] = { '\\','_','|',' ',' ',' ','\\','_','_','_','_','_','/','\\','_','|',' ','|','_','/','\\','_','/',' ','\\','_','_','_','_','/','\\','_','|',' ','\\','_','|',' ','\\','_','_','_','/',' ',' ','\\','/',' ',' ','\\','/',' ',' ','\\','_','_','_','/','\\','_','|',' ','\\','_','/' };
+
+	for (int i = 0; i < 65; i++) {
+		buffer[5][i].Char.AsciiChar = ligne1[i];
+		buffer[5][i].Attributes = 0x000f;
+	}
+
+	for (int i = 0; i < 65; i++) {
+		buffer[6][i].Char.AsciiChar = ligne2[i];
+		buffer[6][i].Attributes = 0x000f;
+	}
+
+	for (int i = 0; i < 65; i++) {
+		buffer[7][i].Char.AsciiChar = ligne3[i];
+		buffer[7][i].Attributes = 0x000f;
+	}
+
+	for (int i = 0; i < 65; i++) {
+		buffer[8][i].Char.AsciiChar = ligne4[i];
+		buffer[8][i].Attributes = 0x000f;
+	}
+
+	for (int i = 0; i < 65; i++) {
+		buffer[9][i].Char.AsciiChar = ligne5[i];
+		buffer[9][i].Attributes = 0x000f;
+	}
+
+	for (int i = 0; i < 65; i++) {
+		buffer[10][i].Char.AsciiChar = ligne6[i];
+		buffer[10][i].Attributes = 0x000f;
+	}
+
+	display();
 }
 
 Buffer::~Buffer()

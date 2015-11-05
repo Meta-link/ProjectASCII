@@ -22,6 +22,8 @@ public:
 	void editMap(Map m);
 	void editCar(Player p);
 	void editHUD(string joueur, int pm);
+
+	void yolo();
 	~Buffer();
 
 private:

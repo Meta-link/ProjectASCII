@@ -10,6 +10,7 @@ class Player
 public:
 	Player();
 	Player(string _name, WORD _color);
+	Player(string _name, WORD _color, int posQgX, int posQgY);
 	void start();
 	void addUnit(Caractere* c);
 	bool moveUnit(int x, int y);
@@ -21,10 +22,12 @@ public:
 	int getUnitX();
 	int getUnitY();
 	~Player();
+	Caractere getQg();
 
 private:
 	string name;
 	WORD color;
 	vector<Caractere*> units;
 	vector<Caractere*>::iterator it;
+	Caractere qg;
 };

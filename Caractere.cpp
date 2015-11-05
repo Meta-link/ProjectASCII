@@ -35,16 +35,13 @@ int Caractere::getPm()
 
 bool Caractere::move(int mX, int mY)
 {
-	if(mX != 0 || mY != 0)
+	x += mX;
+	y += mY;
+	pm -= 1;
+	if(pm <= 0)
 	{
-		x += mX;
-		y += mY;
-		pm -= 1;
-		if(pm <= 0)
-		{
-			pm = pmMax;
-			return true;
-		}
+		pm = pmMax;
+		return true;
 	}
 	return false;
 }

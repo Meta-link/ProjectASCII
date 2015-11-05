@@ -115,13 +115,16 @@ int main()
 				}
 			}*/
 
-			if (map.canMove(players[indice].getUnitX() + x, players[indice].getUnitY() + y))
+			if(x != 0 || y != 0)
 			{
-				if (players[indice].moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
+				if (map.canMove(players[indice].getUnitX() + x, players[indice].getUnitY() + y))
 				{
-					//players[indice].nextUnit();
+					if (players[indice].moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
+					{
+						//players[indice].nextUnit();
 
-					indice = (indice + 1) % 2;
+						indice = (indice + 1) % 2;
+					}
 				}
 			}
 

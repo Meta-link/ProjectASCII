@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Buffer">
-    <Position X="3.25" Y="1.5" Width="1.5" />
+    <Position X="1.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAQAAAQAAAAAAAAAAAAEQAAAIAIBAACkQQAA=</HashCode>
+      <HashCode>gAAAAAAAAQAAAQAAAAAAAAAAAAEQAAAAAIBAACkQQAA=</HashCode>
       <FileName>Buffer.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -15,7 +15,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Case">
-    <Position X="9.25" Y="1.5" Width="1.5" />
+    <Position X="8.5" Y="1.5" Width="1.5" />
     <NestedTypes>
       <Enum Name="Case::TYPE_CASE" Collapsed="true">
         <TypeIdentifier>
@@ -29,14 +29,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Input">
-    <Position X="5" Y="1.5" Width="1.5" />
+    <Position X="3.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACEBAAAAAAgAAAAAAAAAEAAAgAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAACEBAAAAAAgAAAAAAAAAEAAAggAAAAAAAAAAABA=</HashCode>
       <FileName>Input.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Map">
-    <Position X="7.25" Y="1.5" Width="1.5" />
+    <Position X="6.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAABAgAAAAAASAAAAAAAAAAAAAAAAIAAAAAAg=</HashCode>
       <FileName>Map.h</FileName>
@@ -46,7 +46,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Player">
-    <Position X="13" Y="1.5" Width="1.5" />
+    <Position X="13.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAQAQgAABgAIAAAAAACAAUAAGAAAAEgQAAQBA=</HashCode>
       <FileName>Player.h</FileName>

@@ -38,16 +38,22 @@ int main()
 	//INITIALISATIONS
 	init();
 
+	// Création des joueurs
 	Player j1("Jean-Ascii", FOREGROUND_BLUE, 11, 5);
 	Player j2("Jean-Luc", FOREGROUND_RED, 60, 32);
 
-	Caractere bob = Caractere('T',15,15,5);
-	Caractere boby = Caractere('T', 15, 16, 5);
-	Caractere bobette = Caractere('I', 20, 20, 5);
+	// Création des unités du joueur
+	Caractere t1 = Caractere('T', 15, 8, 5);
+	Caractere t2 = Caractere('T', 64, 30, 5);
 
-	j1.addUnit(&bob);
-	j1.addUnit(&bobette);
-	j2.addUnit(&boby);
+	Caractere s1 = Caractere('S', 11, 6, 10);
+	Caractere s2 = Caractere('S', 60, 33, 10);
+
+	j1.addUnit(&t1);
+	j1.addUnit(&s1);
+
+	j2.addUnit(&t2);
+	j2.addUnit(&s2);
 
 	j1.start();
 	j2.start();

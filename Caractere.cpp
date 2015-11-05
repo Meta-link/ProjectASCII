@@ -4,12 +4,12 @@ Caractere::Caractere()
 {
 }
 
-Caractere::Caractere(char c, int posX, int posY, int moves)
+Caractere::Caractere(char _caractere, int _x, int _y, int _pm)
 {
-	caractere = c;
-	x = posX;
-	y = posY;
-	pmMax = moves;
+	caractere = _caractere;
+	x = _x;
+	y = _y;
+	pmMax = _pm;
 	pm = pmMax;
 }
 
@@ -38,7 +38,7 @@ bool Caractere::move(int mX, int mY)
 	x += mX;
 	y += mY;
 	pm -= 1;
-	if(pm <= 0)
+	if(pm <= 0) //Si pm = 0 on passe retourne vrai pour passer a l'unite suivante
 	{
 		pm = pmMax;
 		return true;

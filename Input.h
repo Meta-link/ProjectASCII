@@ -13,5 +13,6 @@ private:
 	HANDLE hStdin;
 	DWORD cNumRead, fdwMode;
 	INPUT_RECORD irInBuf[128];
+	bool repeat;
 };
 

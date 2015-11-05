@@ -10,8 +10,6 @@
 #define SCREEN_WIDTH 80
 #define SCREEN_HEIGHT 40
 
-#define FOREGROUND 0x000F
-
 using namespace std;
 
 class Buffer

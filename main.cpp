@@ -38,11 +38,9 @@ int main()
 	//INITIALISATIONS
 	init();
 
-	Player j1("Joueur 1", FOREGROUND_BLUE);
-	Player j2("Jean-Luc", FOREGROUND_RED);
+	Player j1("Jean-Ascii", FOREGROUND_BLUE, 11, 5);
+	Player j2("Jean-Luc", FOREGROUND_RED, 60, 32);
 
-	Caractere bob = Caractere('T',15,15,5);
-	Caractere boby = Caractere('T', 15, 16, 5);
 	Caractere bobette = Caractere('I', 20, 20, 5);
 
 	j1.addUnit(&bob);
@@ -52,14 +50,12 @@ int main()
 	j1.start();
 	j2.start();
 
-	Player** players = new Player*[2];
-	players[0] = &j1; 
-	players[1] = &j2;
 	int indice = 0;
 
+	bool yolo = false;
 
 	//BOUCLE PRINCIPALE
-	while(!GetAsyncKeyState(VK_ESCAPE)) {
+	while(!GetAsyncKeyState(VK_ESCAPE) || yolo) {
 
 		int x = 0;
 		int y = 0;
@@ -95,14 +91,9 @@ int main()
 				break;
 			}
 
-			if(x != 0 || y != 0)
-			{
-				if (map.canMove(players[indice]->getUnitX() + x, players[indice]->getUnitY() + y))
 				{
 					if (players[indice]->moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
 					{
-						players[indice]->nextUnit();
-						players[indice]->getName();
 						indice = (indice + 1) % 2;
 					}
 				}
@@ -114,6 +105,9 @@ int main()
 			buffer.editCar(j2);
 			buffer.editHUD(players[indice]->getName(), players[indice]->getPm());
 			buffer.display();
+
+			if (yolo) buffer.yolo();
+
 		}
 
 		

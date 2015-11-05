@@ -9,6 +9,16 @@ Player::Player(string _name, WORD _color)
 {
 	name = _name;
 	color = _color;
+
+	qg = Caractere('Q', 10, 20, 0);
+}
+
+Player::Player(string _name, WORD _color, int posQgX, int posQgY)
+{
+	name = _name;
+	color = _color;
+
+	qg = Caractere('Q', posQgX, posQgY, 0);
 }
 
 void Player::start()
@@ -80,4 +90,9 @@ int Player::getUnitY()
 
 Player::~Player()
 {
+}
+
+Caractere Player::getQg()
+{
+	return qg;
 }

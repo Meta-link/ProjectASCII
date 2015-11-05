@@ -1,39 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Buffer">
-    <Position X="9.75" Y="2.25" Width="1.5" />
+    <Position X="2.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAQAAAQAAAAAAAAAAAAEQAAAIAIBAAAkQQAA=</HashCode>
+      <HashCode>gAAAAAAAAQAAAQAAAAAAAAAAAAEQAAAIAIBAACkQQAA=</HashCode>
       <FileName>Buffer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Caractere">
-    <Position X="4.5" Y="2.25" Width="1.5" />
+    <Position X="11" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIAACABAAAEAAACAAAAAAAAAhgAGAIAAA=</HashCode>
       <FileName>Caractere.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Case">
-    <Position X="8" Y="2.25" Width="1.5" />
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Case::TYPE_CASE" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Case.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AACAAAAAAAAAAAAAAAgAAAAAAgAACAAAAAoAAAAABAA=</HashCode>
+      <HashCode>AACAAAAAAAAAAAAAAAgAAAAAAgABCAAAAAoAAAAABAA=</HashCode>
       <FileName>Case.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Input">
-    <Position X="2.75" Y="2.25" Width="1.5" />
+    <Position X="0.75" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACEBAAAAAAgAAAAAAAAAEAAAgAAAAAAAAAAAABA=</HashCode>
       <FileName>Input.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Map">
-    <Position X="6.25" Y="2.25" Width="1.5" />
+    <Position X="7.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAABAgAAAAAASAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAABAgAAAAAASAAAAAAAAAAAAAAAAIAAAAAAg=</HashCode>
       <FileName>Map.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="cases" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Player">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAQAQgAABgAIAAAAAACAAUAAGAAAAEgQAAQBA=</HashCode>
+      <FileName>Player.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="qg" />
+    </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

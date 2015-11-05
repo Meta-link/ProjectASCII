@@ -21,21 +21,17 @@ Map::Map(string filename) {
 
 		// . => fond vert
 		if (currentChar == '.') {
-			cases[col][line] = Case('.', MAP_COLOR_GREEN, true);
+			cases[col][line] = Case(currentChar, MAP_COLOR_GREEN, true);
 		}
 
 		// X => fond bleu
 		else if (currentChar == 'X') {
-			cases[col][line] = Case('X', MAP_COLOR_BLUE, false);
+			cases[col][line] = Case(currentChar, MAP_COLOR_BLUE, false);
 		}
 
-		// M => fond rouge
+		// M => fond jaune bizarre
 		else if (currentChar == 'M') {
-			cases[col][line] = Case('M', BACKGROUND_RED | BACKGROUND_GREEN, false);
-		}
-
-		else if (currentChar == 'Q') {
-			cases[col][line] = Case('Q', BACKGROUND_RED, true, Case::TYPE_CASE::QG);
+			cases[col][line] = Case(currentChar, BACKGROUND_RED | BACKGROUND_GREEN, false);
 		}
 
 		// Caractère non spécifique => on l'affiche telquel

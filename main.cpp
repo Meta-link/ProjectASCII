@@ -107,22 +107,16 @@ int main()
 			{
 				// Récupération de la destination du joueur (avant de se déplacer)
 				int destX = players[indice]->getUnitX() + x, destY = players[indice]->getUnitY() + y;
-				// Pour chaque joueur on vérifie si on n'est pas sur son QG (à changer, pas très propre)
-				for (int i = 0; i < playerCount; i++) {
-					// Sauf pour le joueur en train de jouer
-					if (i != indice) {
-						int qgX = players[i]->getQg().getX();
-						int qgY = players[i]->getQg().getY();
-
-						// Si on est sur le QG d'un autre
-						if (destX == qgX && destY == qgY) {
-							winner = indice+1;
-						}
-					}
-				}
 
 				if (map.canMove(destX, destY)) //On verifie qu'on peut aller sur la case (collisions avec le decor)
 				{
+					int qgX = players[(indice + 1) % 2]->getQg().getX();
+					int qgY = players[(indice + 1) % 2]->getQg().getY();
+					if (destX == qgX && destY == qgY) {
+						winner = indice + 1; //VICTOIRE
+						break;//A CHANGER
+					}
+
 					if(players[indice]->moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
 					{
 						players[indice]->nextUnit(); //On passe à l'unite et au joueur suivant
@@ -141,11 +135,9 @@ int main()
 		//Fin du refresh
 	}
 
-	while(!GetAsyncKeyState(VK_ESCAPE))
-	{
-			/*buffer.yolo();
-			buffer.display();*/
-		cout << "mdr" << endl;
-	}
+
+	buffer.win(winner);
+	buffer.display();
+	while (!GetAsyncKeyState(VK_ESCAPE));
 }
 

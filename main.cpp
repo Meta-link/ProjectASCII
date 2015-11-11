@@ -39,7 +39,7 @@ int main()
 	init();
 
 	// Création des joueurs
-	Player j1("Jean-Ascii", FOREGROUND_BLUE, 11, 5);
+	Player j1("Jean-Ascii", FOREGROUND_BLUE, 63, 30);
 	Player j2("Jean-Luc", FOREGROUND_RED, 60, 32);
 
 	// Création des unités du joueur
@@ -64,10 +64,10 @@ int main()
 	players[1] = &j2;
 	int indice = 0;
 
-	bool yolo = false;
+	int winner = 0;
 
 	//BOUCLE PRINCIPALE
-	while (!GetAsyncKeyState(VK_ESCAPE) || yolo) {
+	while(winner == 0 || !GetAsyncKeyState(VK_ESCAPE)) {
 
 		int x = 0;
 		int y = 0;
@@ -116,9 +116,7 @@ int main()
 
 						// Si on est sur le QG d'un autre
 						if (destX == qgX && destY == qgY) {
-							int a = 0;
-							// TODO: Faire quelque chose
-							yolo = true;
+							winner = indice+1;
 						}
 					}
 				}
@@ -139,11 +137,15 @@ int main()
 			buffer.editCar(j2);
 			buffer.editHUD(players[indice]->getName(), players[indice]->getPm());
 			buffer.display();
-
-			if (yolo) buffer.yolo();
 		}
+		//Fin du refresh
+	}
 
-		
+	while(!GetAsyncKeyState(VK_ESCAPE))
+	{
+			/*buffer.yolo();
+			buffer.display();*/
+		cout << "mdr" << endl;
 	}
 }
 

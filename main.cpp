@@ -39,7 +39,7 @@ int main()
 	init();
 
 	// Création des joueurs
-	Player j1("Jean-Ascii", FOREGROUND_BLUE, 11, 5);
+	Player j1("Jean-Ascii", FOREGROUND_BLUE, 63, 30);
 	Player j2("Jean-Luc", FOREGROUND_RED, 60, 32);
 
 	// Création des unités du joueur
@@ -64,10 +64,10 @@ int main()
 	players[1] = &j2;
 	int indice = 0;
 
-	bool yolo = false;
+	int winner = 0;
 
 	//BOUCLE PRINCIPALE
-	while (!GetAsyncKeyState(VK_ESCAPE) || yolo) {
+	while(winner == 0 || !GetAsyncKeyState(VK_ESCAPE)) {
 
 		int x = 0;
 		int y = 0;
@@ -107,24 +107,16 @@ int main()
 			{
 				// Récupération de la destination du joueur (avant de se déplacer)
 				int destX = players[indice]->getUnitX() + x, destY = players[indice]->getUnitY() + y;
-				// Pour chaque joueur on vérifie si on n'est pas sur son QG (à changer, pas très propre)
-				for (int i = 0; i < playerCount; i++) {
-					// Sauf pour le joueur en train de jouer
-					if (i != indice) {
-						int qgX = players[i]->getQg().getX();
-						int qgY = players[i]->getQg().getY();
-
-						// Si on est sur le QG d'un autre
-						if (destX == qgX && destY == qgY) {
-							int a = 0;
-							// TODO: Faire quelque chose
-							yolo = true;
-						}
-					}
-				}
 
 				if (map.canMove(destX, destY)) //On verifie qu'on peut aller sur la case (collisions avec le decor)
 				{
+					int qgX = players[(indice + 1) % 2]->getQg().getX();
+					int qgY = players[(indice + 1) % 2]->getQg().getY();
+					if (destX == qgX && destY == qgY) {
+						winner = indice + 1; //VICTOIRE
+						break;//A CHANGER
+					}
+
 					if(players[indice]->moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
 					{
 						players[indice]->nextUnit(); //On passe à l'unite et au joueur suivant
@@ -139,11 +131,13 @@ int main()
 			buffer.editCar(j2);
 			buffer.editHUD(players[indice]->getName(), players[indice]->getPm());
 			buffer.display();
-
-			if (yolo) buffer.yolo();
 		}
-
-		
+		//Fin du refresh
 	}
+
+
+	buffer.win(winner);
+	buffer.display();
+	while (!GetAsyncKeyState(VK_ESCAPE));
 }
 

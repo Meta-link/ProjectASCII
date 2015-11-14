@@ -21,8 +21,7 @@ public:
 	void editMap(Map m);
 	void editCar(Player p);
 	void editHUD(string joueur, int pm);
-
-	void yolo();
+	void win(int winner);
 	~Buffer();
 
 private:
@@ -31,4 +30,6 @@ private:
 	COORD dwBufferCoord;
 	SMALL_RECT rcRegion;
 	CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
+
+	void reset();
 };

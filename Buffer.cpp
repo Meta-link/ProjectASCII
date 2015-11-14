@@ -18,14 +18,7 @@ Buffer::Buffer()
 
 	buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
 
-	for (size_t i = 0; i < SCREEN_HEIGHT; i++)
-	{
-		for (size_t j = 0; j < SCREEN_WIDTH; j++)
-		{
-			buffer[i][j].Char.AsciiChar = ' ';
-			buffer[i][j].Attributes = 0x0F;
-		}
-	}
+	reset();
 
 	//Suppression du curseur à l'affichage
 	CONSOLE_CURSOR_INFO cursorInfo;
@@ -37,6 +30,18 @@ Buffer::Buffer()
 	TCHAR title[MAX_PATH];
 	StringCchPrintf(title, MAX_PATH, TEXT("ASCII WARS"));
 	SetConsoleTitle(title);
+}
+
+void Buffer::reset()
+{
+	for (size_t i = 0; i < SCREEN_HEIGHT; i++)
+	{
+		for (size_t j = 0; j < SCREEN_WIDTH; j++)
+		{
+			buffer[i][j].Char.AsciiChar = ' ';
+			buffer[i][j].Attributes = 0x0F;
+		}
+	}
 }
 
 void Buffer::display()
@@ -103,58 +108,26 @@ void Buffer::editHUD(string joueur, int pm)
 }
 
 // Permet d'afficher un écran de victoire quand un joueur atteint le QG de l'autre
-// Fonction très sale: à enlever
-void Buffer::yolo()
+void Buffer::win(int winner)
 {
-	#pragma region
-	for (size_t i = 0; i < SCREEN_HEIGHT; i++)
-	{
-		for (size_t j = 0; j < SCREEN_WIDTH; j++)
-		{
-			buffer[i][j].Char.AsciiChar = ' ';
-			buffer[i][j].Attributes = 0x0F;
+	char currentChar;
+	fstream fin("end"+to_string(winner), fstream::in);
+	int col = 0, line = SCREEN_HEIGHT/2-5;
+
+	reset();
+	
+	// Lecture du fichier
+	while (fin >> noskipws >> currentChar) {
+		buffer[line][col].Char.AsciiChar = currentChar;
+
+		// A la fin d'un caractère on incrémente la colonne
+		col++;
+		// Si on arrive en fin de ligne, on incrémente la ligne et on remet la colonne à 0
+		if (currentChar == '\n') {
+			col = 0;
+			line++;
 		}
 	}
-
-	char ligne1[65] = { '_','_','_','_','_','_',' ','_',' ',' ',' ',' ',' ',' ',' ','_','_','_','_','_',' ',' ',' ','_','_','_','_','_','_','_','_','_','_','_','_','_',' ',' ',' ','_','_',' ',' ',' ',' ','_',' ',' ',' ',' ','_',' ',' ','_','_','_','_','_',' ','_',' ',' ',' ','_' };
-	char ligne2[65] = { '|',' ','_','_','_',' ','\\',' ','|',' ',' ',' ',' ',' ',' / ',' ','_',' ','\\',' ','\\',' ',' / ',' ',' / ',' ',' ','_','_','_','|',' ','_','_','_',' ','\\',' ',' / ',' ',' ','|',' ',' ','|',' ','|',' ',' ','|',' ','|','|',' ',' ','_',' ',' ','|',' ','\\',' ','|',' ','|' };
-	char ligne3[65] = { '|',' ','|','_','/',' ','/',' ','|',' ',' ',' ',' ','/',' ','/','_','\\',' ','\\',' ','V',' ',' / ','|',' ','|','_','_',' ','|',' ','|','_',' / ',' ',' / ',' ','`','|',' ','|',' ',' ','|',' ','|',' ',' ','|',' ','|','|',' ','|',' ','|',' ','|',' ',' ','\\','|',' ','|' };
-	char ligne4[65] = { '|',' ',' ','_','_','/','|',' ','|',' ',' ',' ',' ','|',' ',' ','_',' ',' ','|','\\',' ','/',' ','|',' ',' ','_','_','|','|',' ',' ',' ',' ','/',' ',' ',' ','|',' ','|',' ',' ','|',' ','|','/','\\','|',' ','|','|',' ','|',' ','|',' ','|',' ','.',' ','`',' ','|' };
-	char ligne5[65] = { '|',' ','|',' ',' ',' ','|',' ','|','_','_','_','_','|',' ','|',' ','|',' ','|','|',' ','|',' ','|',' ','|','_','_','_','|',' ','|','\\',' ','\\',' ',' ','_','|',' ','|','_',' ','\\',' ',' ','/','\\',' ',' ','/','\\',' ','\\','_','/',' ','/',' ','|','\\',' ',' ','|' };
-	char ligne6[65] = { '\\','_','|',' ',' ',' ','\\','_','_','_','_','_','/','\\','_','|',' ','|','_','/','\\','_','/',' ','\\','_','_','_','_','/','\\','_','|',' ','\\','_','|',' ','\\','_','_','_','/',' ',' ','\\','/',' ',' ','\\','/',' ',' ','\\','_','_','_','/','\\','_','|',' ','\\','_','/' };
-
-	for (int i = 0; i < 65; i++) {
-		buffer[5][i].Char.AsciiChar = ligne1[i];
-		buffer[5][i].Attributes = 0x000f;
-	}
-
-	for (int i = 0; i < 65; i++) {
-		buffer[6][i].Char.AsciiChar = ligne2[i];
-		buffer[6][i].Attributes = 0x000f;
-	}
-
-	for (int i = 0; i < 65; i++) {
-		buffer[7][i].Char.AsciiChar = ligne3[i];
-		buffer[7][i].Attributes = 0x000f;
-	}
-
-	for (int i = 0; i < 65; i++) {
-		buffer[8][i].Char.AsciiChar = ligne4[i];
-		buffer[8][i].Attributes = 0x000f;
-	}
-
-	for (int i = 0; i < 65; i++) {
-		buffer[9][i].Char.AsciiChar = ligne5[i];
-		buffer[9][i].Attributes = 0x000f;
-	}
-
-	for (int i = 0; i < 65; i++) {
-		buffer[10][i].Char.AsciiChar = ligne6[i];
-		buffer[10][i].Attributes = 0x000f;
-	}
-
-	display();
-	#pragma endregion  Code tres sale
 }
 
 Buffer::~Buffer()

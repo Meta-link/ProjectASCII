@@ -127,3 +127,13 @@ void Player::loadUnitsFromFile(string filename)
 		addUnit(&carac);
 	}
 }
+
+bool Player::hasUnitAtPos(int x, int y)
+{
+	for (auto &u : units) {
+		if (x == u->getX() && y == u->getY())
+			return true;
+	}
+
+	return false;
+}

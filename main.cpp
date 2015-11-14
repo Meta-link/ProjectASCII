@@ -43,8 +43,8 @@ int main()
 	Player j2("Jean-Luc", FOREGROUND_RED, 60, 32);
 
 	// Création des unités du joueur
-	Caractere t1 = Caractere('T', 15, 8, 5);
-	Caractere t2 = Caractere('T', 64, 30, 5);
+	Caractere t1 = Caractere('T', 15, 8, 1000);
+	Caractere t2 = Caractere('T', 64, 30, 25);
 
 	Caractere s1 = Caractere('S', 11, 6, 10);
 	Caractere s2 = Caractere('S', 60, 33, 10);
@@ -122,6 +122,11 @@ int main()
 						players[indice]->nextUnit(); //On passe à l'unite et au joueur suivant
 						indice = (indice + 1) % 2;
 					}
+				}
+
+				// Si l'adversaire a une unité sur le point de destination
+				if (players[(indice + 1) % 2]->hasUnitAtPos(destX, destY)) {
+					// COLLISION
 				}
 			}
 

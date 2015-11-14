@@ -27,6 +27,7 @@ public:
 	~Player();
 	Caractere getQg();
 	void loadUnitsFromFile(string filename);
+	bool hasUnitAtPos(int x, int y);
 
 private:
 	string name;

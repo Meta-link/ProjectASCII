@@ -2,6 +2,9 @@
 #include <vector>
 #include "Caractere.h"
 #include "windows.h"
+#include <fstream>
+#include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -23,6 +26,7 @@ public:
 	int getUnitY();
 	~Player();
 	Caractere getQg();
+	void loadUnitsFromFile(string filename);
 
 private:
 	string name;

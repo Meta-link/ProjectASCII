@@ -86,3 +86,44 @@ Caractere Player::getQg()
 {
 	return qg;
 }
+
+void Player::loadUnitsFromFile(string filename)
+{
+	ifstream file(filename);
+	string str, sub;
+	
+
+	// Lecture ligne par ligne
+	while (std::getline(file, str)) {
+		int counter = 0;
+		char c;
+		int posX, posY, pm;
+
+		// Split
+		istringstream iss(str);
+		do {
+			iss >> sub;
+
+			switch (counter) {
+			case 0:
+				c = sub[0];
+				break;
+			case 1:
+				posX = stoi(sub);
+				break;
+			case 2:
+				posY = stoi(sub);
+				break;
+			case 3:
+				pm = stoi(sub);
+				break;
+			}
+
+			counter++;
+
+		} while (iss);
+
+		Caractere carac = Caractere(c, posX, posY, pm);
+		addUnit(&carac);
+	}
+}

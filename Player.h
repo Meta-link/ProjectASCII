@@ -2,6 +2,10 @@
 #include <vector>
 #include "Caractere.h"
 #include "windows.h"
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -23,6 +27,9 @@ public:
 	int getUnitY();
 	~Player();
 	Caractere getQg();
+	void loadUnitsFromFile(string filename);
+	bool hasUnitAtPos(int x, int y, int* index);
+	void removeUnitByIndex(int i);
 
 private:
 	string name;

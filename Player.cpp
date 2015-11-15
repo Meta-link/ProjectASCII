@@ -31,6 +31,47 @@ void Player::addUnit(Caractere* c)
 	units.push_back(c);
 }
 
+void Player::loadUnitsFromFile(string filename)
+{
+	ifstream file(filename);
+	string str, sub;
+
+
+	// Lecture ligne par ligne
+	while (std::getline(file, str)) {
+		int counter = 0;
+		char c;
+		int posX, posY, pm;
+
+		// Split
+		istringstream iss(str);
+		do {
+			iss >> sub;
+
+			switch (counter) {
+			case 0:
+				c = sub[0];
+				break;
+			case 1:
+				posX = stoi(sub);
+				break;
+			case 2:
+				posY = stoi(sub);
+				break;
+			case 3:
+				pm = stoi(sub);
+				break;
+			}
+
+			counter++;
+
+		} while (iss);
+
+		Caractere carac = Caractere(c, posX, posY, pm);
+		addUnit(&carac);
+	}
+}
+
 bool Player::moveUnit(int x, int y)
 {
 	return (*it)->move(x, y);
@@ -85,4 +126,25 @@ Player::~Player()
 Caractere Player::getQg()
 {
 	return qg;
+}
+
+// Retourne vrai et l'index de l'unité dans le vecteur d'unités de l'adversaire si celui ci possède une unité en X et Y
+bool Player::hasUnitAtPos(int x, int y, int* index)
+{
+	int i = 0;
+	for (auto &u : units) {
+		if (x == u->getX() && y == u->getY()) {
+			*index = i;
+			return true;
+		}
+		i++;
+	}
+
+	return false;
+}
+
+// Detruit (tue) l'unité à l'index I donné
+void Player::removeUnitByIndex(int i)
+{
+	units.erase(units.begin() + i);
 }

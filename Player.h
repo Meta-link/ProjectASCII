@@ -17,7 +17,6 @@ public:
 	Player(string _name, WORD _color, int posQgX, int posQgY);
 	void start();
 	void addUnit(Caractere* c);
-	void removeUnit(Caractere* c);
 	bool moveUnit(int x, int y);
 	void nextUnit();
 	int getPm();

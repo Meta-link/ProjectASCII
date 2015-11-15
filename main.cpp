@@ -108,7 +108,8 @@ int main()
 				// Récupération de la destination du joueur (avant de se déplacer)
 				int destX = players[indice]->getUnitX() + x, destY = players[indice]->getUnitY() + y;
 
-				if (map.canMove(destX, destY)) //On verifie qu'on peut aller sur la case (collisions avec le decor)
+				// On verifie qu'on peut aller sur la case (collisions avec le decor)
+				if (map.canMove(destX, destY)) 
 				{
 					int qgX = players[(indice + 1) % 2]->getQg().getX();
 					int qgY = players[(indice + 1) % 2]->getQg().getY();
@@ -117,18 +118,20 @@ int main()
 						break;//A CHANGER
 					}
 
+					// Variable contenant l'index de l'unité sur laquelle on tombe (si elle existe)
+					int index = 0;
+					// Si l'adversaire a une unité sur le point de destination, retourne son index
+					if (players[(indice + 1) % 2]->hasUnitAtPos(destX, destY, &index)) {
+						// COLLISION, on tue l'unité
+						players[(indice + 1) % 2]->removeUnitByIndex(index);
+					}
+
+					// Si il s'agit simplement de décors, tester la quantité de PM restants
 					if(players[indice]->moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
 					{
 						players[indice]->nextUnit(); //On passe à l'unite et au joueur suivant
 						indice = (indice + 1) % 2;
 					}
-				}
-
-				int index = 0;
-				// Si l'adversaire a une unité sur le point de destination
-				if (players[(indice + 1) % 2]->hasUnitAtPos(destX, destY, &index)) {
-					// COLLISION
-					players[(indice + 1) % 2]->removeUnitByIndex(index);
 				}
 			}
 

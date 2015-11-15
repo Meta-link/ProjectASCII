@@ -31,6 +31,11 @@ void Player::addUnit(Caractere* c)
 	units.push_back(c);
 }
 
+void Player::removeUnit(Caractere * c)
+{
+	units.erase(remove(units.begin(), units.end(), c), units.end());
+}
+
 bool Player::moveUnit(int x, int y)
 {
 	return (*it)->move(x, y);
@@ -128,12 +133,22 @@ void Player::loadUnitsFromFile(string filename)
 	}
 }
 
-bool Player::hasUnitAtPos(int x, int y)
+// Retourne l'index de l'unité dans le vecteur d'unités
+bool Player::hasUnitAtPos(int x, int y, int* index)
 {
+	int i = 0;
 	for (auto &u : units) {
-		if (x == u->getX() && y == u->getY())
+		if (x == u->getX() && y == u->getY()) {
+			*index = i;
 			return true;
+		}
+		i++;
 	}
 
 	return false;
+}
+
+void Player::removeUnitByIndex(int i)
+{
+	units.erase(units.begin() + i);
 }

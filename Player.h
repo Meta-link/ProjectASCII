@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ public:
 	Player(string _name, WORD _color, int posQgX, int posQgY);
 	void start();
 	void addUnit(Caractere* c);
+	void removeUnit(Caractere* c);
 	bool moveUnit(int x, int y);
 	void nextUnit();
 	int getPm();
@@ -27,7 +29,8 @@ public:
 	~Player();
 	Caractere getQg();
 	void loadUnitsFromFile(string filename);
-	bool hasUnitAtPos(int x, int y);
+	bool hasUnitAtPos(int x, int y, int* index);
+	void removeUnitByIndex(int i);
 
 private:
 	string name;

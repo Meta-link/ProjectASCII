@@ -43,10 +43,10 @@ int main()
 	Player j2("Jean-Luc", FOREGROUND_RED, 60, 32);
 
 	// Création des unités du joueur
-	Caractere t1 = Caractere('T', 15, 8, 25);
+	Caractere t1 = Caractere('T', 67, 28, 25);
 	Caractere t2 = Caractere('T', 64, 30, 25);
 
-	Caractere s1 = Caractere('S', 11, 6, 10);
+	Caractere s1 = Caractere('S', 62, 31, 10);
 	Caractere s2 = Caractere('S', 60, 33, 10);
 
 	j1.addUnit(&t1);

@@ -67,7 +67,7 @@ int main()
 	int winner = 0;
 
 	//BOUCLE PRINCIPALE
-	while(winner == 0 || !GetAsyncKeyState(VK_ESCAPE)) {
+	while(!GetAsyncKeyState(VK_ESCAPE) && winner == 0) {
 
 		int x = 0;
 		int y = 0;
@@ -114,7 +114,6 @@ int main()
 					int qgY = players[(indice + 1) % 2]->getQg().getY();
 					if (destX == qgX && destY == qgY) {
 						winner = indice + 1; //VICTOIRE
-						break;//A CHANGER
 					}
 
 					if(players[indice]->moveUnit(x, y)) //Vrai si pm = 0 on passe au deplacement suivant
@@ -135,7 +134,7 @@ int main()
 		//Fin du refresh
 	}
 
-
+	//Affichage du gagnant puis fin du programme
 	buffer.win(winner);
 	buffer.display();
 	while (!GetAsyncKeyState(VK_ESCAPE));

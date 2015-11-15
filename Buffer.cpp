@@ -118,14 +118,17 @@ void Buffer::win(int winner)
 	
 	// Lecture du fichier
 	while (fin >> noskipws >> currentChar) {
-		buffer[line][col].Char.AsciiChar = currentChar;
-
-		// A la fin d'un caractère on incrémente la colonne
-		col++;
 		// Si on arrive en fin de ligne, on incrémente la ligne et on remet la colonne à 0
 		if (currentChar == '\n') {
+			buffer[line][col].Char.AsciiChar = ' ';
 			col = 0;
 			line++;
+		}
+		else
+		{
+			buffer[line][col].Char.AsciiChar = currentChar;
+			// Apres un caractere on incrémente la colonne
+			col++;
 		}
 	}
 }
